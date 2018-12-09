@@ -1,4 +1,5 @@
 
+
 import java.util.Arrays;
 
 /** A class that implements a list of objects by using an array.
@@ -7,19 +8,14 @@ import java.util.Arrays;
  * The size of the array doubles until it exceeds the maximum allowed
  * capacity, where upon an exception is thrown.
  * 
- * @author Amit K Dogra
+ * This code is from Chapter 13 of 
+ * Data Structures and Abstractions with Java 4/e
+ * @author Frank M. Carrano
  *      
  * The toString method is overwritten to give a nice display of the items in
  * the list in this format { <1> <2> <3> <4> }
- *  
- * An alternate display method has been created to print the list one item 
- * to a line along with the index
- * 
- * Stubs were added for the methods needed to complete Lab 13
- * 
-  * @version 1.0
-*/
-
+ * Modification by Charles Hoot
+ */
 class AList<T> implements ListInterface<T> {
 
     private T[] list; //Array of list entries; ignore list[0]
@@ -125,7 +121,7 @@ class AList<T> implements ListInterface<T> {
             list[givenPosition] = newEntry;
             return originalEntry;
         } else 
-             throw new IndexOutOfBoundsException("Illegal position give to replace operation.");
+             throw new IndexOutOfBoundsException("Illegal position given to replace operation.");
  
     } // end replace
 
@@ -136,7 +132,7 @@ class AList<T> implements ListInterface<T> {
             assert !isEmpty();
             return list[givenPosition];
         } else 
-             throw new IndexOutOfBoundsException("Illegal position given to getEntry operation.");
+             throw new IndexOutOfBoundsException("Illegal position give to getEntry operation.");
     } // end getEntry
 
     public boolean contains(T anEntry) {
@@ -233,84 +229,6 @@ class AList<T> implements ListInterface<T> {
 
         return result;
     }
-
-    
-    /** Display the list with indices one to a line
-     * 
-     */
-    public void display() {
-        for (int index = 1; index <= numberOfEntries; index++) {
-            System.out.println(index + ":" + list[index]);
-        }
-    } // end display
-
- 
-    /** Check to see if two lists are the same.  
-    * @param aList Another array list to check this list against.
-    * @return True if all the items in this list and the other list are equals.
-    */
-
-    public boolean equals(AList<T> aList) {
-        boolean result = false; // result of comparison of lists
-
-        int     position;  // want position available throughout method
-
-        // If the lists have unequal lengths just use the default value of result.
-        if (numberOfEntries == (aList.getLength())) {
-            boolean allMatch = true;
-            position = 1;
-            // Scan the equal length lists looking for a non equal pair of items.
-            while((position <= numberOfEntries) && allMatch){
-                // If we find a mismatch allMatch becomes false and we will escape the while
-                allMatch = list[position].equals(aList.list[position]); 
-                position++;
-            } // end while
-            result = allMatch;
-       }
-
-        return result;
-  }  // end equals
- 
-    
-    
-   /*********************************************************************
-    * 
-    * METHODS TO BE COMPLETED
-    * 
-    ***********************************************************************/
-  
-    
-    /** Reverse the order of items in a list.
-    */
-    public void reverse()
-    {
-        // COMPLETE THIS METHOD 
-    	int  start=1;
-    	int end=numberOfEntries;
-    	while(start<end)
-    	{
-    		T temp=list[start];
-    		list[start]=list[end];
-    		list[end]=temp;
-    		start++;
-    		end--;
-    	}
-    }
-    
-    
-    /** Cycle the first item to the end of the list.
-    */
-    public void cycle()
-    {
-        // COMPLETE THIS METHOD 
-    	T temp;
-    	temp=list[1];
-    	int i;
-    	for( i=1;i<numberOfEntries;i++)
-    	{
-    		list[i]=list[i+1];
-    	}
-    	list[i]=temp;
-    }
-
 }
+
+
